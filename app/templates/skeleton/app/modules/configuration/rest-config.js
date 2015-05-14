@@ -1,16 +1,13 @@
 angular.module('configuration.rest', ['ngResource'])
-
     .provider('restConfigService', function() {
 
+        var newEntityId = "-1";
         var baseUrl = '/';
         var identityOperation;
+        var logoutOperation;
         var authenticationOperation;
 
         var RestConfigService = function() {
-
-            this.getAuthenticationOperation = function() {
-                return baseUrl + authenticationOperation;
-            };
 
             this.getIdentityOperation = function() {
                 return baseUrl + identityOperation;
@@ -19,15 +16,22 @@ angular.module('configuration.rest', ['ngResource'])
             this.getOperation = function(operation) {
                 return baseUrl + operation;
             };
+
+            this.getLogoutOperation = function() {
+                return baseUrl + logoutOperation;
+            };
+
+            this.getNewEntityId = function() {
+                return newEntityId;
+            };
         };
 
         this.setBaseUrl = function(url) { baseUrl = url; };
-        this.setAuthenticationOperation = function(op) { authenticationOperation = op; };
         this.setIdentityOperation = function(op) { identityOperation = op; };
+	this.setLogoutOperation = function(op) { logoutOperation = op; };
 
         this.$get = [function() {
             return new RestConfigService();
         }];
-
     });
 

@@ -10,15 +10,16 @@ angular.module('sampleApp', [
     'configuration.identity.authority',
     'configuration.identity.authentication',
     'company',
-    'user'])
+    'user',
+    'ngFileUpload'])
 
 /**
  * Configure rest URL
  */
     .config(function(restConfigServiceProvider){
-        restConfigServiceProvider.setBaseUrl('http://localhost:9002');
-        restConfigServiceProvider.setAuthenticationOperation('/authentication');
-        restConfigServiceProvider.setIdentityOperation('/identities/:id');
+        restConfigServiceProvider.setBaseUrl('/rest');
+        restConfigServiceProvider.setIdentityOperation('/me');
+	restConfigServiceProvider.setLogoutOperation('/signOut');
     })
 
 /**
@@ -42,6 +43,7 @@ angular.module('sampleApp', [
  */
     .config(function(filterableConstants) {
         filterableConstants.pageSize = 3;
+        filterableConstants.maxSize = 3;
     });
 
 
