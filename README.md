@@ -26,6 +26,7 @@ First, clone this repository *(this step will go away as soon as we are on bower
     npm link
 
 You'll also need a server.  For this, you can use our [Spring Boot implementation](https://github.com/Intelliware/sample-app-server.git).
+
     # In a new terminal
     git clone git@github.com:Intelliware/sample-app-server.git
     cd sample-app-server/sample-app-api
