@@ -17,14 +17,19 @@ Once Node is installed, do:
 
     npm install -g grunt-cli yo bower
 
-
 **Create a project:**
 
 First, clone this repository *(this step will go away as soon as we are on bower)*
 
-    git clone git@github.com:JLBoor/generator-jlb-angular.git
+    git clone git@github.com:Intelliware/generator-jlb-angular.git
     cd generator-jlb-angular
     npm link
+
+You'll also need a server.  For this, you can use our [Spring Boot implementation](https://github.com/Intelliware/sample-app-server.git).
+    # In a new terminal
+    git clone git@github.com:Intelliware/sample-app-server.git
+    cd sample-app-server/sample-app-api
+    mvn clean install spring-boot:run
 
 Then create your awesome app:
 
@@ -32,19 +37,14 @@ Then create your awesome app:
     cd MyNewAwesomeApp
     yo jlb-angular
 
-And finally, `grunt sample` and open [http://localhost:9001/app/#/page/company/list](http://localhost:9001/app/#/page/company/list)
+And finally, `grunt serve` and open [http://localhost:9001/app/#/page/company/list](http://localhost:9001/app/#/page/company/list)
 
-Use one of the following username
-
-    john.doe
-    french
-    company
+Now login using 'a' and 'password'
 
 ### Grunt tasks
     grunt serve   #This will run a development server with watch & livereload enabled.
     grunt test    #Run local unit tests.
     grunt build   #Places a fully optimized (minified, concatenated, and more) in /dist
-    grunt sample  #Same as grunt serve, but also starts the mock server on http://localhost:9002
 
 ### Generators
 #### Modules
