@@ -145,7 +145,7 @@ describe('The authentication module, ', function () {
 
                 identityService.getIdentity.andReturn(null);
 
-                $rootScope.$apply();
+                $rootScope.$applyAsync();
 
                 expect(authenticationService.isAuthenticated()).toBeFalsy();
             });
