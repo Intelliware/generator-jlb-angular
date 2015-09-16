@@ -8,7 +8,7 @@ angular.module('configuration.identity', ['configuration.rest', 'ngCookies', 'ui
             $scope.identity = identityService.getIdentity();
         });
 
-        $scope.signOut = function () {            
+        $scope.signOut = function () {
             delete $scope.identity;
             authenticationService.signOut();
             identityService.clear();
@@ -38,7 +38,7 @@ angular.module('configuration.identity', ['configuration.rest', 'ngCookies', 'ui
 
             update: function (newIdentity) {
                 identity = newIdentity;
-                $cookies.put("username" , identity.username, {expires: new Date(2016, 1, 1)});
+                $cookies.put("username" , identity.username, {expires: cookieTimeOutMillis });
                 $cookies.put("authorities" , identity.authorities.join(), {expires: cookieTimeOutMillis });
             },
 
