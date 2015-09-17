@@ -27,7 +27,7 @@
     "angular-mocks": "~1.4.5"
   },
   "resolutions": {
-    "angular": "1.4.5",
+    "angular": "1.4.6",
     "angular-translate": "~2.7.2"
   }
 
