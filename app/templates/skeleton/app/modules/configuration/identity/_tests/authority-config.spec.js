@@ -113,7 +113,7 @@ describe('The authority module, ', function () {
 
             authorityService.hasAuthority.andReturn(false);
             $rootScope.$broadcast('$stateChangeStart', {name: 'page.home'});
-            $rootScope.$apply();
+            $rootScope.$applyAsync();
 
             expect($state.go).toHaveBeenCalledWith('page.errors.403');
         });

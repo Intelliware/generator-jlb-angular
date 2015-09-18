@@ -1,4 +1,4 @@
-angular.module('configuration.locale', ['pascalprecht.translate'])
+angular.module('configuration.locale', ['pascalprecht.translate', 'ngSanitize'])
 
     .config(function($translateProvider) {
 
@@ -6,7 +6,7 @@ angular.module('configuration.locale', ['pascalprecht.translate'])
             prefix: 'i18n/locale-',
             suffix: '.json'
         });
-
+        $translateProvider.useSanitizeValueStrategy('escape');
         $translateProvider.preferredLanguage('en');
     })
 

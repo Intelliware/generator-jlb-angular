@@ -2,6 +2,7 @@ angular.module('sampleApp', [
     'ui.bootstrap',
     'ui.router',
     'ngCookies',
+    'ngSanitize',
     'components',
     'configuration.rest',
     'configuration.state',

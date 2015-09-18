@@ -8,7 +8,7 @@ angular.module('configuration.identity', ['configuration.rest', 'ngCookies', 'ui
             $scope.identity = identityService.getIdentity();
         });
 
-        $scope.signOut = function () {            
+        $scope.signOut = function () {
             delete $scope.identity;
             authenticationService.signOut();
             identityService.clear();
@@ -19,7 +19,8 @@ angular.module('configuration.identity', ['configuration.rest', 'ngCookies', 'ui
 
         var identity;
         var Identity = $resource(restConfigService.getIdentityOperation());
-
+        var cookieTimeOutMinutes = 120;
+        var cookieTimeOutMillis = new Date(new Date().getTime() + cookieTimeOutMinutes * 60 * 1000);
 
         return {
 
@@ -28,8 +29,8 @@ angular.module('configuration.identity', ['configuration.rest', 'ngCookies', 'ui
                     return identity;
                 }
 
-                if($cookies.username) {
-                    identity = {username: $cookies.username, authorities: $cookies.authorities.split(",")};
+                if($cookies.get("username") && $cookies.get("authorities")) {
+                    identity = {username: $cookies.get("username"), authorities: $cookies.get("authorities").split(",")};
                     return identity;
                 }
                 return null;
@@ -37,14 +38,14 @@ angular.module('configuration.identity', ['configuration.rest', 'ngCookies', 'ui
 
             update: function (newIdentity) {
                 identity = newIdentity;
-                $cookies.username = identity.username;
-                $cookies.authorities = identity.authorities.join();
+                $cookies.put("username" , identity.username, {expires: cookieTimeOutMillis });
+                $cookies.put("authorities" , identity.authorities.join(), {expires: cookieTimeOutMillis });
             },
 
             clear: function() {
                 identity = null;
-                delete $cookies.username;
-                delete $cookies.authorities;
+                $cookies.remove("username");
+                $cookies.remove("authorities");
             }
         };
     });
